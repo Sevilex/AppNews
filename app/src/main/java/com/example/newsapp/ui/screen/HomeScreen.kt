@@ -35,10 +35,11 @@ fun HomeScreen(
     val pagerState = rememberPagerState(
         initialPage = 0,
         initialPageOffsetFraction = 0f
-    )
+    ) {
+        100
+    }
 
     VerticalPager(
-        pageCount = 100,
         state = pagerState,
         modifier = Modifier.fillMaxSize().wrapContentHeight(align = Alignment.Top),
         pageSize = PageSize.Fill,
