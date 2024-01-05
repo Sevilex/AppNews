@@ -19,8 +19,9 @@ class NewsViewModel @Inject constructor(
     private val newsrepository: Newsrepository
 ) : ViewModel() {
 
-    private val _news:MutableStateFlow<ResourceState<NewsResponse>> = MutableStateFlow(ResourceState.Loading())
-    val news:StateFlow<ResourceState<NewsResponse>> = _news
+    private val _news: MutableStateFlow<ResourceState<NewsResponse>> =
+        MutableStateFlow(ResourceState.Loading())
+    val news: StateFlow<ResourceState<NewsResponse>> = _news
 
     init {
         getNews(AppConstans.COUNTRY)

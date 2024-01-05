@@ -5,13 +5,13 @@ import android.util.Log
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class NewsApplication :Application() {
+class NewsApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        Log.i(TAG,"Coming_inside_onCreate")
+        Log.i(TAG, "Coming_inside_onCreate")
     }
 
-    companion object{
+    companion object {
         const val TAG = "NewsApplication"
     }
 }

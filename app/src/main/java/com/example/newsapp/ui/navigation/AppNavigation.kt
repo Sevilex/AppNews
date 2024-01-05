@@ -7,10 +7,10 @@ import androidx.navigation.compose.rememberNavController
 import com.example.newsapp.ui.screen.HomeScreen
 
 @Composable
-fun AppNavigationGraph(){
+fun AppNavigationGraph() {
     val navController = rememberNavController()
-    NavHost(navController = navController , startDestination = Routes.HOME_SCREEN){
-        composable(Routes.HOME_SCREEN){
+    NavHost(navController = navController, startDestination = Routes.HOME_SCREEN) {
+        composable(Routes.HOME_SCREEN) {
             HomeScreen()
         }
     }

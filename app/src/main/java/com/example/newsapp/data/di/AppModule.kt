@@ -54,13 +54,13 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideNewsDataSource(apiService: ApiService):NewsDataSource{
+    fun provideNewsDataSource(apiService: ApiService): NewsDataSource {
         return NewsDataSourceImpl(apiService)
     }
 
     @Provides
     @Singleton
-    fun ProvidesNewsRepository(newsDataSource: NewsDataSource):Newsrepository{
+    fun ProvidesNewsRepository(newsDataSource: NewsDataSource): Newsrepository {
         return Newsrepository(newsDataSource)
     }
 }

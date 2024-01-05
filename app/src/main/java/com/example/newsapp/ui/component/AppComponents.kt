@@ -1,10 +1,11 @@
 package com.example.newsapp.ui.component
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -23,6 +24,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -65,18 +67,23 @@ fun NormalTextComponent(textValue: String) {
     Text(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight()
+            .wrapContentHeight()
             .padding(8.dp),
         text = textValue,
         style = TextStyle(
             fontSize = 18.sp,
-            fontWeight = FontWeight.Normal
+            fontWeight = FontWeight.Normal,
+            color = Purple40
         )
     )
 }
 
 @Composable
-fun HeadingTextComponent(textValue:String){
+fun HeadingTextComponent(
+    textValue: String,
+    isAuthorText: Boolean = false,
+    centerAlignment: Boolean = false
+) {
     //
     Text(
         modifier = Modifier
@@ -85,12 +92,12 @@ fun HeadingTextComponent(textValue:String){
             .padding(8.dp),
         text = textValue,
         style = TextStyle(
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold
-        )
+            fontSize = if (isAuthorText) 16.sp else 24.sp,
+            fontWeight = FontWeight.Medium
+        ),
+        textAlign = if (centerAlignment) TextAlign.Center else TextAlign.Start
     )
 }
-
 
 @Composable
 fun NewsRowComponent(page: Int, article: Article) {
@@ -110,12 +117,13 @@ fun NewsRowComponent(page: Int, article: Article) {
             placeholder = painterResource(id = R.drawable.mini2),
             error = painterResource(id = R.drawable.mini2)
         )
-        
-        Spacer(modifier = Modifier.size(20.dp))
-        HeadingTextComponent(textValue = article.title?:"")
-        Spacer(modifier = Modifier.size(10.dp))
-        NormalTextComponent(textValue = article.description?:"")
 
+        Spacer(modifier = Modifier.size(20.dp))
+        HeadingTextComponent(textValue = article.title ?: "")
+        Spacer(modifier = Modifier.size(5.dp))
+        NormalTextComponent(textValue = article.description ?: "")
+        Spacer(modifier = Modifier.weight(1f))
+        AuthorDetailComponent(article.author, article.source?.name)
     }
 }
 
@@ -133,4 +141,38 @@ fun NewsRowComponent() {
         null
     )
     NewsRowComponent(0, article)
+}
+
+@Composable
+fun AuthorDetailComponent(autherName: String?, sourceName: String?) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 10.dp, end = 10.dp, bottom = 24.dp)
+    ) {
+        autherName?.also {
+            Text(text = it)
+        }
+        Spacer(modifier = Modifier.weight(1f))
+        sourceName?.also {
+            Text(text = it)
+        }
+    }
+}
+
+@Composable
+fun EmptyStateComponent() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.baseline_signal_wifi_off_24),
+            contentDescription = null
+        )
+        HeadingTextComponent(textValue = "Please Check Your Internet", centerAlignment = true)
+    }
 }
