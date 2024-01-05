@@ -77,6 +77,7 @@ fun NormalTextComponent(textValue: String) {
 
 @Composable
 fun HeadingTextComponent(textValue:String){
+    //
     Text(
         modifier = Modifier
             .fillMaxWidth()
