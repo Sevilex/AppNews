@@ -2,6 +2,7 @@ package com.example.newsapp.ui.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -18,6 +19,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.newsapp.data.entity.Article
 import com.example.newsapp.data.entity.NewsResponse
 import com.example.newsapp.ui.theme.Purple40
 
@@ -54,7 +56,7 @@ fun NormalTextComponent(textValue: String) {
     Text(
         modifier = Modifier
             .fillMaxWidth()
-            .wrapContentHeight()
+            .fillMaxHeight()
             .padding(8.dp),
         text = textValue,
         style = TextStyle(
@@ -62,4 +64,10 @@ fun NormalTextComponent(textValue: String) {
             fontWeight = FontWeight.Normal
         )
     )
+}
+
+
+@Composable
+fun NewsRowComponent(page:Int,article: Article){
+    NormalTextComponent(textValue = "$page \n\n ${article.title}")
 }

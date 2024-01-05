@@ -74,6 +74,9 @@ dependencies {
     //splashScreen
     implementation("androidx.core:core-splashscreen:1.1.0-alpha02")
 
+    //coil
+    implementation("io.coil-kt:coil-compose:2.5.0")
+
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.activity:activity-compose:1.7.2")
